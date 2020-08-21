@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsersTable extends Migration
+class CreateSlidesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,15 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('slides', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('user_name');
-            $table->string('type');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
-            $table->Integer('user_create')->nullable();
+            $table->string('image');
+            $table->string('link');
+            $table->text('excerpt');//đoạn mô tả
+            $table->timestamp('date_update')->nullable();
+            $table->Integer('user_create');
+            $table->Integer('user_update')->nullable();
             $table->timestamps();
         });
     }
@@ -34,6 +33,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('slides');
     }
 }
